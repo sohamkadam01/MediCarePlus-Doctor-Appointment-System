@@ -2,7 +2,8 @@
 MediCarePlus is a web-based Doctor Appointment Management System designed to streamline the process of booking, managing, and tracking medical appointments between patients and healthcare providers.
 
 
-**Business Model Understanding**
+
+##  **Business Model Understanding**
 
 
 
@@ -37,11 +38,11 @@ This is a Booking System (Healthcare Appointment Marketplace)
 
 8.Admin manages platform
 
-**Identify User Roles**
+## **Identify User Roles**
 
 <img width="665" height="221" alt="user" src="https://github.com/user-attachments/assets/5301d9eb-6879-45cb-8ed5-d9204f4f2610" />
 
-**Functional Requirements**
+## **Functional Requirements**
 
 
 These define what the system should do.
@@ -111,7 +112,7 @@ Generate reports
 
 
 
-**4️⃣ Non-Functional Requirements (NFR)**
+## **4️⃣ Non-Functional Requirements (NFR)**
 
 
 These define how systems should behave.
@@ -136,7 +137,7 @@ These define how systems should behave.
 💾 Data consistency (Transactional DB)
 
 
-**Monolithic Architecture**
+## **Monolithic Architecture**
 <img width="900" height="1500" alt="deepseek_mermaid_20260218_a96de4" src="https://github.com/user-attachments/assets/d5abfdde-09e1-41c9-9054-8dd95e5f547e" />
 
 **Core Modules Design**
@@ -212,7 +213,7 @@ specializations
 
 doctor_availability
 
-
+## Basic ER Diagram
 
 <img width="550" height="1000" alt="deepseek_mermaid_20260218_ed4bc2" src="https://github.com/user-attachments/assets/f29ac2c0-16d2-4e71-9670-06b4877e0ec7" />
 

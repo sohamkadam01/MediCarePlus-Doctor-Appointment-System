@@ -1,7 +1,6 @@
 package com.medicareplus.Service;
 
 import java.util.List;
-
 import com.medicareplus.DTO.LoginRequest;
 import com.medicareplus.DTO.LoginResponse;
 import com.medicareplus.Models.User;
@@ -14,7 +13,7 @@ public interface UserService {
     User registerDoctor(User user);
     User registerAdmin(User user);
 
-        // Login method
+    // Login method
     LoginResponse login(LoginRequest loginRequest);
 
     List<User> getAllUsers();
@@ -38,4 +37,7 @@ public interface UserService {
 
     boolean existsByEmail(String email);
     boolean existsByPhone(String phone);
+    
+    // Add this method for saving users directly
+    User saveUser(User user);
 }

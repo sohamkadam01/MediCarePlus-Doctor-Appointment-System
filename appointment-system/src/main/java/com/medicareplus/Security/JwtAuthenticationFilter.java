@@ -28,14 +28,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getServletPath();
+        boolean isOptions = "OPTIONS".equalsIgnoreCase(request.getMethod());
+        boolean isDoctorDetailsGet = "GET".equalsIgnoreCase(request.getMethod())
+                && matches(path, "/api/doctors/details/**");
+        boolean isLabEnrollmentPost = "POST".equalsIgnoreCase(request.getMethod())
+                && matches(path, "/api/lab-enrollments");
 
-        return matches(path, "/api/auth/login")
+        return isOptions
+                || matches(path, "/api/auth/login")
                 || matches(path, "/api/auth/login/email")
                 || matches(path, "/api/auth/login/phone")
                 || matches(path, "/api/users/register/**")
+                || isLabEnrollmentPost
                 || matches(path, "/api/public/**")
                 || matches(path, "/api/test/public")
-                || matches(path, "/api/doctors/details/**")
+                || isDoctorDetailsGet
                 || matches(path, "/api/specializations/**");
     }
     
@@ -45,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
         
-        try {
+          try {
             String jwt = parseJwt(request);
             
             // Check if token is blacklisted

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,6 +41,23 @@ public class DoctorDetailsRequestDTO {
     @DecimalMin(value = "0.0", inclusive = false, message = "Consultation fee must be greater than 0")
     @JsonProperty("consultation_fee") 
     private BigDecimal consultationFee;
+
+    @NotBlank(message = "City is required")
+    @JsonProperty("city")
+    private String city;
+
+    @NotBlank(message = "State is required")
+    @JsonProperty("state")
+    private String state;
+
     
+    // @NotNull(message = "Availability start time is required")
+    // @JsonProperty("availability_start_time")
+    // private LocalTime availabilityStartTime;
+
+    // @NotNull(message = "Availability end time is required")
+    // @JsonProperty("availability_end_time")
+    // private LocalTime availabilityEndTime;
+
     private String licenseCertificateUrl;
 }

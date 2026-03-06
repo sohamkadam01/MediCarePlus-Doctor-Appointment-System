@@ -2,10 +2,14 @@ package com.medicareplus.Service;
 
 import com.medicareplus.Models.Appointment;
 import com.medicareplus.Models.AppointmentStatus;
+import com.medicareplus.Models.UserRole;
 import com.medicareplus.DTO.AppointmentRequestDTO;
 import com.medicareplus.DTO.AppointmentResponseDTO;
 import com.medicareplus.DTO.AppointmentUpdateDTO;
 import com.medicareplus.DTO.DoctorAppointmentStats;
+import com.medicareplus.DTO.DoctorPaymentAnalyticsDTO;
+import com.medicareplus.DTO.DoctorReviewDTO;
+import com.medicareplus.DTO.DoctorReviewSummaryDTO;
 import com.medicareplus.DTO.FeedbackDTO;
 import com.medicareplus.DTO.PatientAppointmentStats;
 
@@ -15,60 +19,47 @@ import java.util.List;
 
 public interface AppointmentService {
     
-    // Book new appointment
     AppointmentResponseDTO bookAppointment(Integer patientId, AppointmentRequestDTO request);
     
-    // Get appointment by ID
     AppointmentResponseDTO getAppointmentById(Long appointmentId);
     
-    // Get all appointments for patient
     List<AppointmentResponseDTO> getPatientAppointments(Integer patientId);
     
-    // Get upcoming appointments for patient
     List<AppointmentResponseDTO> getPatientUpcomingAppointments(Integer patientId);
     
-    // Get past appointments for patient
     List<AppointmentResponseDTO> getPatientPastAppointments(Integer patientId);
     
-    // Get all appointments for doctor
     List<AppointmentResponseDTO> getDoctorAppointments(Integer doctorId);
     
-    // Get upcoming appointments for doctor
     List<AppointmentResponseDTO> getDoctorUpcomingAppointments(Integer doctorId);
     
-    // Get past appointments for doctor
     List<AppointmentResponseDTO> getDoctorPastAppointments(Integer doctorId);
     
-    // Get today's appointments for doctor
     List<AppointmentResponseDTO> getDoctorTodayAppointments(Integer doctorId);
     
-    // Cancel appointment
-    AppointmentResponseDTO cancelAppointment(Long appointmentId, String cancellationReason);
+    AppointmentResponseDTO cancelAppointment(Integer actorUserId, UserRole actorRole, Long appointmentId, String cancellationReason);
     
-    // Reschedule appointment
     AppointmentResponseDTO rescheduleAppointment(Long appointmentId, LocalDate newDate, LocalTime newTime);
     
-    // Confirm appointment (by doctor)
-    AppointmentResponseDTO confirmAppointment(Long appointmentId);
+    AppointmentResponseDTO confirmAppointment(Integer doctorId, Long appointmentId);
     
-    // Complete appointment (by doctor)
-    AppointmentResponseDTO completeAppointment(Long appointmentId);
+    AppointmentResponseDTO completeAppointment(Integer doctorId, Long appointmentId);
     
-    // Add prescription to appointment
-    AppointmentResponseDTO addPrescription(Long appointmentId, String prescription, String diagnosis);
+    // AppointmentResponseDTO addPrescription(Long appointmentId, String prescription, String diagnosis);
     
-    // Add feedback to appointment
-    AppointmentResponseDTO addFeedback(Long appointmentId, FeedbackDTO feedback);
+    AppointmentResponseDTO addFeedback(Integer actorUserId, UserRole actorRole, Long appointmentId, FeedbackDTO feedback);
+
+    List<DoctorReviewDTO> getDoctorReviews(Integer doctorId);
+
+    DoctorReviewSummaryDTO getDoctorReviewSummary(Integer doctorId);
     
-    // Check if time slot is available
     boolean isTimeSlotAvailable(Integer doctorId, LocalDate date, LocalTime time);
     
-    // Get available time slots for doctor on a date
     List<LocalTime> getAvailableTimeSlots(Integer doctorId, LocalDate date);
     
-    // Get appointment statistics for patient
     PatientAppointmentStats getPatientStats(Integer patientId);
     
-    // Get appointment statistics for doctor
     DoctorAppointmentStats getDoctorStats(Integer doctorId);
+
+    DoctorPaymentAnalyticsDTO getDoctorPaymentAnalytics(Integer doctorId);
 }

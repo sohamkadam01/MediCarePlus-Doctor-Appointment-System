@@ -1,5 +1,7 @@
 package com.medicareplus.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "specializations")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Specializations {
 
     @Id
@@ -23,6 +26,7 @@ public class Specializations {
 
     // One specialization → many doctors
     @OneToMany(mappedBy = "specialization", fetch = FetchType.LAZY)
+    @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<DoctorDetails> doctors;

@@ -4,15 +4,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
-@Table(name = "users")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 public class User {
 
     @Id
@@ -27,6 +29,9 @@ public class User {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private boolean verified = false;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
@@ -64,6 +69,7 @@ public class User {
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
+    @JsonIgnore   
     @JsonManagedReference("user-doctor")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
@@ -93,6 +99,14 @@ public class User {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private List<Appointment> doctorAppointments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "doctor",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.LAZY)
+    @JsonManagedReference("doctor-availability")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<DoctorAvailability> doctorAvailabilities = new ArrayList<>();
 
 
     /*
@@ -154,5 +168,15 @@ public class User {
     public void removeDoctorAppointment(Appointment appointment) {
         doctorAppointments.remove(appointment);
         appointment.setDoctor(null);
+    }
+
+    public void addDoctorAvailability(DoctorAvailability availability) {
+        doctorAvailabilities.add(availability);
+        availability.setDoctor(this);
+    }
+
+    public void removeDoctorAvailability(DoctorAvailability availability) {
+        doctorAvailabilities.remove(availability);
+        availability.setDoctor(null);
     }
 }

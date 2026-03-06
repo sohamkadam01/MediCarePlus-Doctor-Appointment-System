@@ -34,6 +34,7 @@ public class AdminInitializer {
             admin.setStatus(UserStatus.ACTIVE);
             admin.setCreatedAt(LocalDateTime.now());
             admin.setUpdatedAt(LocalDateTime.now());
+            admin.setVerified(true);
 
             userRepository.save(admin);
 

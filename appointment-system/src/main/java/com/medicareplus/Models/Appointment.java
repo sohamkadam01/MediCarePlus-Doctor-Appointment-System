@@ -17,6 +17,7 @@ import lombok.*;
 @Builder
 public class Appointment {
     
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -59,6 +60,43 @@ public class Appointment {
     
     @Column(name = "notes", length = 1000)
     private String notes;
+
+    @Column(name = "duration_of_symptoms", length = 100)
+    private String durationOfSymptoms;
+
+    @Column(name = "severity", length = 20)
+    private String severity;
+
+    @Column(name = "visit_type", length = 20)
+    private String visitType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "booking_source", nullable = false, length = 20)
+    private BookingSource bookingSource = BookingSource.NEW;
+
+    @Column(name = "parent_appointment_id")
+    private Long parentAppointmentId;
+
+    @Column(name = "patient_snapshot_name", length = 100)
+    private String patientSnapshotName;
+
+    @Column(name = "patient_snapshot_age")
+    private Integer patientSnapshotAge;
+
+    @Column(name = "patient_snapshot_gender", length = 20)
+    private String patientSnapshotGender;
+
+    @Column(name = "patient_snapshot_blood_group", length = 10)
+    private String patientSnapshotBloodGroup;
+
+    @Column(name = "patient_snapshot_allergies", length = 1000)
+    private String patientSnapshotAllergies;
+
+    @Column(name = "patient_snapshot_emergency_contact_name", length = 100)
+    private String patientSnapshotEmergencyContactName;
+
+    @Column(name = "patient_snapshot_emergency_contact_phone", length = 20)
+    private String patientSnapshotEmergencyContactPhone;
     
     // Payment details
     @Column(name = "consultation_fee")
@@ -66,8 +104,8 @@ public class Appointment {
     
     
     // Prescription and medical records
-    @Column(name = "prescription", length = 2000)
-    private String prescription;
+    // @Column(name = "prescription", length = 2000)
+    // private String prescription;
     
     @Column(name = "diagnosis", length = 1000)
     private String diagnosis;

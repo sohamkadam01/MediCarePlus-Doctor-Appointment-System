@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import appointmentService from '../services/AppointmentService';
 
-const AppointmentCard = ({ appointment, type, onUpdate }) => {
+const AppointmentCard = ({ appointment, type, onUpdate, onRebook }) => {
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [cancelReason, setCancelReason] = useState('');
   const [showRescheduleModal, setShowRescheduleModal] = useState(false);
@@ -37,7 +37,7 @@ const AppointmentCard = ({ appointment, type, onUpdate }) => {
         </span>;
       case 'PENDING':
         return <span className="flex items-center gap-1 bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-medium">
-          <PendingIcon size={12} /> Pending
+          <PendingIcon size={12} /> Not Accepted
         </span>;
       case 'COMPLETED':
         return <span className="flex items-center gap-1 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
@@ -127,6 +127,18 @@ const AppointmentCard = ({ appointment, type, onUpdate }) => {
 
           {/* Appointment Details */}
           <div className="space-y-2 mb-3">
+            {appointment.status === 'CONFIRMED' && (
+              <div className="flex items-center gap-2 text-sm text-green-700 bg-green-50 border border-green-200 rounded-lg px-2 py-1">
+                <CheckCircle size={14} />
+                <span>Your appointment is accepted by doctor.</span>
+              </div>
+            )}
+            {appointment.status === 'PENDING' && (
+              <div className="flex items-center gap-2 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-2 py-1">
+                <PendingIcon size={14} />
+                <span>Your appointment is not accepted yet. Waiting for doctor approval.</span>
+              </div>
+            )}
             <div className="flex items-center gap-2 text-sm text-gray-600">
               <Calendar size={16} className="text-gray-400" />
               <span>{formatDate(appointment.appointmentDate)}</span>
@@ -188,6 +200,16 @@ const AppointmentCard = ({ appointment, type, onUpdate }) => {
               >
                 <Star size={16} />
                 Rate & Review
+              </button>
+            )}
+
+            {type === 'past' && typeof onRebook === 'function' && (
+              <button
+                onClick={() => onRebook(appointment)}
+                className="flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-sm hover:bg-blue-100 transition-colors"
+              >
+                <Clock size={16} />
+                Book Again
               </button>
             )}
 

@@ -37,13 +37,11 @@ class AuthService {
 
     logout() {
         const token = localStorage.getItem('token');
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         if (token) {
-            // Call logout endpoint
-            api.post('/auth/logout', {}, true)
-                .finally(() => {
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('user');
-                });
+            // Best-effort logout; UI should not depend on API success.
+            api.post('/auth/logout', {}, true).catch(() => {});
         }
     }
 
@@ -61,6 +59,10 @@ class AuthService {
 
     getToken() {
         return localStorage.getItem('token');
+    }
+
+    async getLabEnrollmentStatus(userId) {
+        return api.get(`/lab-enrollments/user/${userId}`, true);
     }
 }
 

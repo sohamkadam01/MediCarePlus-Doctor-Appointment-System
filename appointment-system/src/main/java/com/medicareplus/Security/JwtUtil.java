@@ -31,7 +31,6 @@ public class JwtUtil {
         return createToken(claims, userDetails.getUsername());
     }
     
-    // Generate token with additional claims
     public String generateToken(String username, String role, Integer userId) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("role", "ROLE_" + role);
@@ -49,13 +48,11 @@ public class JwtUtil {
                 .compact();
     }
     
-    // Validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
     
-    // Validate token without UserDetails
     public Boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Calendar, Clock, Filter, ChevronDown } from 'lucide-react';
 import AppointmentCard from './AppointmentCard';
 
-const AppointmentList = ({ appointments, type, onUpdate }) => {
+const AppointmentList = ({ appointments, type, onUpdate, onRebook }) => {
   const [filter, setFilter] = useState('all');
   const [sortBy, setSortBy] = useState('date');
 
@@ -99,6 +99,7 @@ const AppointmentList = ({ appointments, type, onUpdate }) => {
             appointment={appointment}
             type={type}
             onUpdate={onUpdate}
+            onRebook={onRebook}
           />
         ))}
       </div>

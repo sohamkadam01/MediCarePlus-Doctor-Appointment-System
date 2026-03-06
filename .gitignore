@@ -1,0 +1,24 @@
+# General
+.DS_Store
+Thumbs.db
+
+# Node / frontend
+node_modules/
+Frontend/node_modules/
+Frontend/dist/
+Frontend/build/
+
+# Java / backend
+appointment-system/target/
+**/target/
+**/*.log
+
+# IDEs
+.idea/
+.vscode/
+
+# Uploads / runtime data
+uploads/
+appointment-system/uploads/
+Frontend/uploads/
+

@@ -1,16 +1,22 @@
 package com.medicareplus.Models;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+import com.medicareplus.Models.Specializations;
+
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "doctor_details")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class DoctorDetails {
     
     @Id
@@ -27,6 +33,7 @@ public class DoctorDetails {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "specialization_id", nullable = false)
+    @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Specializations specialization;
@@ -42,10 +49,26 @@ public class DoctorDetails {
     
     @Column(name = "bio", length = 1000)
     private String bio;
+
+
+
+    @Column(name = "city", length = 100)
+    private String city;
     
+    @Column(name = "state", length = 100)
+    private String state;
+    
+
+
     @Column(name = "consultation_fee", precision = 10, scale = 2)
     private BigDecimal consultationFee;
-    
+
+    @Column(name = "availability_start_time")
+    private LocalTime availabilityStartTime;
+
+    @Column(name = "availability_end_time")
+    private LocalTime availabilityEndTime;
+
     @Column(name = "is_approved")
     private boolean approved;
     

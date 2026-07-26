@@ -1,223 +1,358 @@
-# MediCarePlus-Doctor-Appointment-System
-MediCarePlus is a web-based Doctor Appointment Management System designed to streamline the process of booking, managing, and tracking medical appointments between patients and healthcare providers.
+# 🏥 MediCarePlus – Doctor Appointment Management System
 
+> A full-stack healthcare platform that simplifies the process of booking, managing, and tracking medical appointments between patients and healthcare providers. Built using **Spring Boot**, **React.js**, **MySQL**, **Redis**, and **WebSockets**, the system provides secure authentication, real-time notifications, and efficient appointment management.
 
+---
 
-##  **Business Model Understanding**
+## 📖 Overview
 
+**MediCarePlus** is a modern healthcare appointment management system designed to bridge the gap between patients and doctors through an intuitive web application.
 
+Patients can search for doctors, view their profiles, book appointments, and manage their medical visits, while doctors can manage their availability and appointment schedules. Administrators oversee platform operations, user management, and doctor verification.
 
- **Project Type:**
-This is a Booking System (Healthcare Appointment Marketplace)
+The application follows a secure, scalable architecture with JWT-based authentication, role-based authorization, Redis caching, and real-time communication.
 
+---
 
- **Business Flow**
+# ✨ Key Features
 
- 
-1.Patient registers/login
+## 🔐 Authentication & Authorization
 
+* User Registration (Patient & Doctor)
+* Secure Login & Logout
+* JWT-based Authentication
+* BCrypt Password Encryption
+* Role-Based Access Control (RBAC)
+* Protected REST APIs
 
-2.Patient searches doctor (by specialization/location)
+---
 
+## 👨‍⚕️ Patient Features
 
-3.Patient checks availability
+* Register and manage profile
+* Search doctors by specialization
+* View doctor profiles
+* Check doctor availability
+* Book appointments
+* Cancel appointments
+* View appointment history
+* Receive real-time appointment updates
 
+---
 
-4.Patient books appointment
+## 🩺 Doctor Features
 
+* Manage profile
+* Add and update availability schedules
+* Accept or reject appointments
+* Update appointment status
+* View patient details
+* Manage daily appointment schedule
 
-5.Doctor accepts/rejects
+---
 
+## 👨‍💼 Admin Features
 
-6.Appointment happens
+* Approve doctor registrations
+* Manage doctors and patients
+* Monitor appointments
+* Manage platform users
+* Generate reports and analytics
 
+---
 
+## ⚡ Real-Time Features
 
-7.Payment (optional for now)
+* WebSocket-powered live appointment updates
+* Instant booking status notifications
+* Real-time appointment confirmations
+* Live dashboard synchronization
 
+---
 
-8.Admin manages platform
+## 🚀 Performance Optimization
 
-## **Identify User Roles**
+* Redis caching for frequently accessed data
+* Optimized database queries
+* Fast REST API responses
+* Efficient appointment scheduling
 
-<img width="665" height="221" alt="user" src="https://github.com/user-attachments/assets/5301d9eb-6879-45cb-8ed5-d9204f4f2610" />
+---
 
-## **Functional Requirements**
+## 📊 Appointment Management
 
+* Book appointments
+* Cancel appointments
+* Appointment status tracking
+* Doctor availability management
+* Appointment history
+* Conflict-free scheduling
 
-These define what the system should do.
+---
 
+# 💼 Business Model
 
-**🔹 Authentication**
+MediCarePlus functions as a **Healthcare Appointment Marketplace**, connecting patients with healthcare providers through a centralized booking platform.
 
+### Business Workflow
 
-User Registration (Doctor / Patient)
+```text
+Patient Registration/Login
+            │
+            ▼
+Search Doctor
+            │
+            ▼
+View Doctor Profile
+            │
+            ▼
+Check Availability
+            │
+            ▼
+Book Appointment
+            │
+            ▼
+Doctor Accepts / Rejects
+            │
+            ▼
+Appointment Completed
+            │
+            ▼
+Payment (Future Enhancement)
+            │
+            ▼
+Admin Monitoring & Reporting
+```
 
+---
 
-Login / Logout
+# 👥 User Roles
 
+### 👤 Patient
 
-JWT-based authentication
+* Search doctors
+* Book appointments
+* Manage appointments
+* View appointment history
 
+### 👨‍⚕️ Doctor
 
-Password reset
+* Manage availability
+* Accept/Reject appointments
+* Update appointment status
+* View patient information
 
+### 👨‍💼 Administrator
 
-**🔹 Patient Features**
+* Manage users
+* Approve doctor registrations
+* Monitor appointments
+* Generate reports
 
+---
 
-Search doctors (by specialization, location)
+# 🛠 Tech Stack
 
+## Backend
 
-View doctor profile
+* Java
+* Spring Boot
+* Spring Security
+* Spring Data JPA
+* Spring WebSocket
+* JWT Authentication
 
+## Frontend
 
-Book appointment
+* React.js
+* JavaScript
+* HTML5
+* CSS3
+* Tailwind CSS
 
+## Database
 
-Cancel appointment
+* MySQL
 
+## Cache
 
-View appointment history
+* Redis
 
+## Communication
 
-**🔹 Doctor Features**
+* WebSockets
 
+## Build Tools
 
-Add availability schedule
+* Maven
+* npm
 
+---
 
-Accept/Reject appointment
+# 🏗 System Architecture
 
+The application follows a **Monolithic Architecture**, where all core modules are integrated into a single Spring Boot application while maintaining modular separation.
 
-Update appointment status (Completed / Cancelled)
+### Core Modules
 
-
-View patient details
-
-
-**🔹 Admin Features**
-
-
-Approve doctor registration
-
-
-Manage users
-
-
-View all appointments
-
-
-Generate reports
-
-
-
-## **4️⃣ Non-Functional Requirements (NFR)**
-
-
-These define how systems should behave.
-🔐 Security (JWT, password encryption using BCrypt)
-
-
-⚡ Performance (API response < 2 seconds)
-
-
-📈 Scalability (Support 1000+ users)
-
-
-🧾 Maintainability (Clean architecture)
-
-
-📱 Responsive UI
-
-
-🛡 Role-based access control
-
-
-💾 Data consistency (Transactional DB)
-
-
-## **Monolithic Architecture**
-<img width="900" height="1500" alt="deepseek_mermaid_20260218_a96de4" src="https://github.com/user-attachments/assets/d5abfdde-09e1-41c9-9054-8dd95e5f547e" />
-
-**Core Modules Design**
-
-
-🔐 1. Authentication & Authorization Module
+### 🔐 Authentication Module
 
 Responsibilities:
 
-Register
+* User Registration
+* Login
+* JWT Generation
+* Role-Based Authentication
+* Password Encryption
 
-Login
+---
 
-Generate JWT
-
-Role-based access
-
-Tables:
-
-users
-
-roles
-
-**👥 2. User Management Module**
+### 👥 User Management Module
 
 Responsibilities:
 
-Update profile
+* Patient Profile Management
+* Doctor Profile Management
+* User Administration
+* Role Management
 
-View profile
+---
 
-Admin user control
-
-Tables:
-
-users
-
-doctor_details
-
-patient_details
-
-**📅 3. Appointment Management Module**
+### 📅 Appointment Module
 
 Responsibilities:
 
-Book appointment
+* Book Appointment
+* Cancel Appointment
+* Appointment Status Management
+* Appointment History
 
-Cancel appointment
+---
 
-Update status
-
-Tables:
-
-appointments
-
-doctor_availability
-
-
-
-**🏥 4. Doctor/Service Module**
+### 🩺 Doctor Module
 
 Responsibilities:
 
-Add specialization
+* Manage Doctor Profiles
+* Availability Scheduling
+* Specialization Management
+* Appointment Approval
 
-Manage availability
+---
 
-Approve doctors
+### 🔔 Notification Module
 
-Tables:
+Responsibilities:
 
-specializations
+* Real-time appointment updates
+* Booking confirmations
+* Appointment status notifications
+* WebSocket communication
 
-doctor_availability
+---
 
-## Basic ER Diagram
+### 💾 Database Module
 
-<img width="550" height="1000" alt="deepseek_mermaid_20260218_ed4bc2" src="https://github.com/user-attachments/assets/f29ac2c0-16d2-4e71-9670-06b4877e0ec7" />
+Responsibilities:
 
+* Store user information
+* Doctor details
+* Patient records
+* Appointment history
+* Availability schedules
 
+---
 
+# 📂 Project Structure
 
+```text
+MediCarePlus/
+│
+├── backend/
+│   ├── authentication/
+│   ├── controllers/
+│   ├── services/
+│   ├── repositories/
+│   ├── entities/
+│   ├── websocket/
+│   ├── security/
+│   └── config/
+│
+├── frontend/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── hooks/
+│   └── assets/
+│
+├── database/
+│
+├── screenshots/
+│
+└── README.md
+```
 
+---
+
+# 🔒 Non-Functional Requirements
+
+* JWT-based Security
+* BCrypt Password Encryption
+* Responsive User Interface
+* Role-Based Authorization
+* Optimized API Performance
+* Scalable Architecture
+* Transactional Data Consistency
+* Clean Code Architecture
+* Easy Maintainability
+
+---
+
+# 📸 System Diagrams
+
+## User Roles
+
+> *(Insert your User Roles diagram here.)*
+
+---
+
+## Monolithic Architecture
+
+> *(Insert your Monolithic Architecture diagram here.)*
+
+---
+
+## Entity Relationship Diagram (ER Diagram)
+
+> *(Insert your ER Diagram here.)*
+
+---
+
+# 🚀 Future Enhancements
+
+* 💳 Online Payment Gateway Integration
+* 📧 Email Notifications
+* 📱 SMS Appointment Reminders
+* 🤖 AI-based Doctor Recommendation
+* 📹 Video Consultation
+* 🌐 Multi-Hospital Support
+* 📅 Google Calendar Integration
+* 📄 Electronic Medical Records (EMR)
+* ⭐ Doctor Ratings & Reviews
+* 📊 Analytics Dashboard
+* 🐳 Docker & Kubernetes Deployment
+
+---
+
+# 👨‍💻 Author
+
+**Soham Kadam**
+
+* GitHub: https://github.com/sohamkadam01
+* LinkedIn: https://linkedin.com/in/kadamsoham0015
+
+---
+
+# ⭐ Support
+
+If you found this project helpful, consider giving it a **⭐ Star** on GitHub. It helps others discover the project and motivates future improvements.

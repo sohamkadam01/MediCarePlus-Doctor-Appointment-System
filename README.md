@@ -308,25 +308,7 @@ MediCarePlus/
 
 ---
 
-# 📸 System Diagrams
 
-## User Roles
-
-> *(Insert your User Roles diagram here.)*
-
----
-
-## Monolithic Architecture
-
-> *(Insert your Monolithic Architecture diagram here.)*
-
----
-
-## Entity Relationship Diagram (ER Diagram)
-
-> *(Insert your ER Diagram here.)*
-
----
 
 # 🚀 Future Enhancements
 
